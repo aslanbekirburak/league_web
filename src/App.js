@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 
@@ -12,10 +12,12 @@ function App() {
   // }
   
   useEffect(() => {
-    var evtSource = new EventSource('http://localhost:8082');
+    var evtSource = new EventSource('http://localhost:8082/start');
     console.log("pressed",evtSource)
     evtSource.onmessage = e => {
       console.log(e.data)
+      // If i would get the data,ı put it on the table but ı did't get :(
+      // To fill the Table i i use useState for state management and update table every 5 seconds
     }
   }, [])
   const columns = [{
