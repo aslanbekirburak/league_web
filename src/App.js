@@ -3,13 +3,21 @@ import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 
 function App() {
-  const getList =()=>{
+  // const getList =()=>{
+  //   var evtSource = new EventSource('http://localhost:8082');
+  //   console.log("pressed")
+  //   evtSource.onmessage = function(e) {
+  //     console.log(e.data)
+  //   }
+  // }
+  
+  useEffect(() => {
     var evtSource = new EventSource('http://localhost:8082');
-    console.log("pressed")
-    evtSource.onmessage = function(e) {
+    console.log("pressed",evtSource)
+    evtSource.onmessage = e => {
       console.log(e.data)
     }
-  }
+  }, [])
   const columns = [{
     Header: 'Team Name',
     accessor: 'Name'
@@ -30,7 +38,7 @@ function App() {
   return (
     <div>
      <div style={{marginRight:100,marginLeft:100}}>
-     <button onClick={() => getList()}>Start Week</button>
+     {/* <button onClick={() => getList()}>Play Week</button> */}
         <ReactTable
         data={[]}
         columns={columns}
